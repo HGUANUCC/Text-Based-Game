@@ -1,0 +1,232 @@
+#This will be the ascii starting part
+print ("""
+                                                                 
+                                                                                                              .  , *                                                                                     
+                                                                                                             (#.( ,/   .*        .,                                                                     
+                                                                                                                                                                                                        
+                                                                                                           ( %, # *    ,/ / ((.(.#( &                                                                   
+                                                                                                                                                                                                        
+                                                                                                                       ,, . /#      ( ** .                                                              
+                                                                                                        ,  ( ,  ( ,.   // / *,      (,,, #                                                              
+                                                                                                                                                                                                        
+                                                                                                     /#,#(*( ##.( #/ ( ((./ (#.(.(# #,(( #,,( /                                                         
+                                                                                                                                                                                                        
+                                                                                      ,/ .,** ,. (                                              .* % ,* ,/,, // (                                       
+                                                                                    . ., /  / /  / .                                               *. / *. / ,.                                         
+                                                                                                                                                                                                        
+                                                                         /#*/( ( .                                                                                ((.( *%                               
+                                                                                                                                                                                                        
+                  /#.* ##.*.%# *,(# ,.*( *,.*                     #(.*                                                                                                      /% *                        
+                  .  ,  , ,  , ,  , ,  , .                         . ,                                                                                                    /  .                          
+                                     , ,  ,        .  ,                                                                                                                           .                     
+                /            . .   ./,/# /  *    . /*,* / ,# ((                                                                                                                * #/ (                   
+                                                                                                                                                                                                        
+               .&.(#./ (*                     * /( (/,( /,                                    ( .  //*( /(*( /#.( /(                                                                /./,                
+                          *                   .                                                                                                                                                         
+                          #  / (    .(   ,  # (. # /. .                                                  *   /.                                                                       ./                
+                #    # &% , #. , #% *  . ***. *.*. /. ,                                               ( * /# *../ /(                                                                  (. (              
+                                                                                                                                                                                                        
+                  /            (.// /,.( ( .%   .% (*,/ /*                                 .# (  *           *  ( ( ./,                            //,(.                              */                
+                     .                   .    ,                                                  , ,                                                                                                    
+                          /                             .  /                                       .  ( .*                                                                                              
+                       %% ,  *      #  #           /.   (( .                                       (/.. *  %                                       #                                  #&                
+                                                                                                                                                                                                        
+                                                           # #/ *                                                                                                                     /(                
+                                                                                                                                                                                                        
+                                                                  (/ .  *                                                                                                           ,                   
+                     &                                          & /. * *                                                                                                            (                   
+                                                                                                                                                                                                        
+                                                                          # (/ ( (#                                                                               %* /           #(                     
+                                                                                                                                                                                                        
+                                                                                    * // ,,** ,. / .                                                                 /,/% (                             
+                                                                                 .. ,..* /  * / ./ *  /                                                           . ,, /, /.                            
+                                                                                                                                                                                                        
+                                                                                         % /# #,*# (/*# ##*# (#.% (( % (# #./% #.(% #,(( /./# /**# (/*# (#*#                                            
+                                                                                                                                                                                                        
+                                                                                                ,/ * ,/ *(,/ *( (       . ,                                                                             
+                                                                                              .  .    * .. * .. (       . *                                                                             
+                                                                                                      . .  .       ,                                                                                    
+                                                                                                   . */ //,/ /( (.*    
+ """)
+#Type writer function
+import sys
+from time import sleep
+def print(msg):
+	for i in msg:
+		sys.stdout.write(i)
+		sleep(0.02)
+		sys.stdout.flush()
+	sys.stdout.write("\n")     
+#Main game body
+def rungame1():
+	global x
+	global y
+	global myinput
+	while score<200:
+		myinput = input('where do you want to go? (Press w for up, d for right, s for down, and a for left) \n')
+		if  myinput == 'd':
+			x=x+1
+			room()
+		if  myinput == 's':
+			y=y-1
+			room()
+		if  myinput == 'a':
+			x=x-1
+			room()
+		if  myinput == 'w':
+			y=y+1
+			room()
+def question1():
+	global answer1
+	global points
+	answer1=int(input("What is...\n1.answer \n2. answer \n3. answer\n").strip())
+	if answer1 == 2:
+		points=points+1
+		print("correct!")
+	else:
+		print("wrong")
+def question2():
+	global answer2
+	global points
+	answer2 = int(input("What is...\n1.answer \n2. answer \n3. answer\n").strip())
+	if answer2 == 1:
+		points=points+1
+		print("correct!")
+	else:
+		print("wrong")
+def question3():
+	global answer3
+	global points
+	answer3=int(input("What is...\n1.answer \n2. answer \n3. answer\n").strip())
+	if answer3 == 2:
+		points=points+1
+		print("correct!")
+	else:
+		print("wrong")
+def runquiz():
+	global points
+	points=0
+	question1()
+	moveon = int(input("are you ready to move on? type 1 when ready\n"))
+	if moveon == 1:
+		question2()
+	moveon = int(input("are you ready to move on? type 1 when ready\n"))
+	if moveon == 1:
+		question3()
+	start()
+
+#Condition for ending game
+def endgame():
+	if score>=200:
+		print("Congratulations, Bluey is happier than ever, don't forget, collaboration was always important on your path to success!\n You achieved %s" % score)
+
+#The introduction
+def introduction():
+	global score
+	global name
+	name = input("Hi, I am Bluey, what's your name?\n")
+	print("Hello " + name)
+	print("Welcome to my game!" + name)
+#The tutorial and picking the games
+def start():
+	Initiate = int(input("What game would you like to play?\n1.Main Game\n2.A quiz about No Help Wanted\n"))
+	if Initiate == 1:
+		print ("Welcome to the classroom where Posy is!\n")
+		print ("You approach a door, Posy has just realized help is important, as Posy's best friend, of course you are invited to help out!\n")
+		print ("You turn the knob, and the door swings open, sitting there is a little fish tank, with Bluey inside, hmm, there seems to be a lot of classrooms, this is surely a huge school,\n exploring them would be a good idea...")
+		instructions = input("Do you need the basic instructions? yes/no)")         
+		if instructions == "yes":
+			ready = input("There are 16 rooms for you to discover, use wasd to control the directions, in each room you would POSSIBLY discover something useful. Good luck!\n Type start to move on!")
+			if ready == "start":
+				rungame1()  
+		elif instructions == "no":
+			rungame1()  
+	elif Initiate == 2:
+		runquiz()
+#Room conditions/score calculations
+def room():
+	global score
+	global x
+	global y
+	if (x ==1 and y == 4):
+		print("You walked into a room with shelves of book and stationaries, probably a storage room. \n You lock your sights on a bag of fish food, this would probably come in handy.")
+		score = score+50
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==2 and y == 4):
+		print("You walk into a room filled with the classmates of Posy, right in front there is a long line, \nevery student holding a tray, this must be the cafeteria. Suddenly, you hear someone to your left calling your name, you carry your fish bowl over, and they all meet together to play with Bluey, he seems to be in a cheerful mood now")
+		score = score+30
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==3 and y == 4):
+		print("Someone bumped into you, your fish bowl falling out of balance and almost spilling water. Bluey wakes up from his napping, \nand it looks like it's not the best time for Bluey")
+		score = score-20
+		print("Bluey doesn't look as cheerful, but don't worry, keep exploring to help him! HP: %s" % score)
+	elif (x ==4 and y == 4):
+		print("This is a room filled with books, wow! Ms. Smith welcomes you with a smile and hand you some puppets to play, \nsurely Bluey likes some puppet shows!")
+		score = score+50
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==1 and y == 3):
+		print("This rooms seems pretty familiar,\n wait, why are you back here at Posy's classroom, room two? We started here!")
+	elif (x ==2 and y == 3):
+		print("A pack of food flakes, this will be a great treat for Bluey!")
+		score = score+40
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==3 and y == 3):
+		print("Mr.Zen has been waiting in this room, he assembled everyone in the class as a surprise!\n A puppet show performance is put on and seems like Bluey is having a lot of fun! ")
+		score = score+100
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==4 and y == 3):
+		print("This looks like an abandned school room, nothing here, and even the walls are falling apart, so boring...")
+		score = score-10
+		print("Bluey is slightly bored, he lost a bit of his happiness HP: %s" % score)
+	elif (x ==1 and y == 2):
+		print("This is the science room, you always wanted to come here, Bluey seems to be a bit scared of the snake and the lizard,\n but he's doing fine. Sam, the vet offers to check Bluey. Sam is a huge help, thanks very much!")
+		score = score+30
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==2 and y == 2):
+		print("You walk into the art room, realizing that Bluey needs to be fed, you rush to feed him some flakes, he got a little hungry though.")
+		score = score-20
+		print("Bluey is a bit sad, but you can do this! HP: %s" % score)
+	elif (x ==3 and y == 2):
+		print("This is the music classroom, the kids are playing some beautiful music, Bluey is enjoying it!")
+		score = score+40
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==4 and y == 2):
+		print("Whoo, this is a surprise, Mr.Zen found out that you didn't do your homework, Bluey doesn't seem to be happy about this.")
+		score = score-40
+		print("Bluey is disappointed, better go do some homework... HP: %s" % score)
+	elif (x ==1 and y == 1):
+		print("Jacob offers to help change the water in the fish bowl, it does give Bluey a better living environment.")
+		score = score+20
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==2 and y == 1):
+		print("You walk into the design lab, Jacob happens to be working there, Jacob happens to have a book of fish care, this is gonna help out.")
+		score = score+60
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x ==3 and y == 1):
+		print("This room is crowded with people, Bluey is a bit scared and shy")
+		score = score-20
+		print("Don't worry, this isn't a big deal. Bluey'sHP: %s" % score)
+	elif (x ==4 and y == 1):
+		printf("Joining in on the assembly, Bluey seems to be enjoying the crowd.")
+		score = score+20
+		print("Congratulations! Bluey is happier, HP: %s" % score)
+	elif (x==5):
+		print ("You are at the edge of the classrooms! You can't go anywhere")
+		x=x-1
+	elif (x==0):
+		print ("You are at the edge of the classrooms! You can't go anywhere")
+		x=x+1
+	elif (y==5):
+		print ("You are at the edge of the classrooms! You can't go anywhere")
+		y=y-1
+	elif (y==0):
+		print ("You are at the edge of the classrooms! You can't go anywhere")
+		y=y+1
+#The starting assigned value and body of code
+score=0
+x = 1
+y = 3
+#Functions being run
+introduction()
+start()	
+endgame()
