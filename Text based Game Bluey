@@ -1,5 +1,6 @@
 #No Help Wanted
 #Author: Hugh Guan
+#Date: Dec. 9th 2021-Jan.7th 2021
 #This will be the ascii art that will be used repeatedly, so I could just call the variable instead of the actual ascii art
 correct="""
   ______   ______   .______      .______       _______   ______ .___________. __  
@@ -17,44 +18,6 @@ ____    __    ____ .______        ______   .__   __.   _______
    \    /\    /    |  |\  \----.|  `--'  | |  |\   | |  |__| | 
     \__/  \__/     | _| `._____| \______/  |__| \__|  \______|
 """
-
-print ("""
-____    __    ____  _______  __        ______   ______   .___  ___.  _______                                                             
-\   \  /  \  /   / |   ____||  |      /      | /  __  \  |   \/   | |   ____|                                                            
- \   \/    \/   /  |  |__   |  |     |  ,----'|  |  |  | |  \  /  | |  |__                                                               
-  \            /   |   __|  |  |     |  |     |  |  |  | |  |\/|  | |   __|                                                              
-   \    /\    /    |  |____ |  `----.|  `----.|  `--'  | |  |  |  | |  |____                                                             
-    \__/  \__/     |_______||_______| \______| \______/  |__|  |__| |_______|                                                            
-                                                                                                                                         
-.___________.  ______                                                                                                                    
-|           | /  __  \                                                                                                                   
-`---|  |----`|  |  |  |                                                                                                                  
-    |  |     |  |  |  |                                                                                                                  
-    |  |     |  `--'  |                                                                                                                  
-    |__|      \______/                                                                                                                   
-                                                                                                                                         
-.__   __.   ______       __    __   _______  __      .______      ____    __    ____  ___      .__   __. .___________. _______  _______  
-|  \ |  |  /  __  \     |  |  |  | |   ____||  |     |   _  \     \   \  /  \  /   / /   \     |  \ |  | |           ||   ____||       \ 
-|   \|  | |  |  |  |    |  |__|  | |  |__   |  |     |  |_)  |     \   \/    \/   / /  ^  \    |   \|  | `---|  |----`|  |__   |  .--.  |
-|  . `  | |  |  |  |    |   __   | |   __|  |  |     |   ___/       \            / /  /_\  \   |  . `  |     |  |     |   __|  |  |  |  |
-|  |\   | |  `--'  |    |  |  |  | |  |____ |  `----.|  |            \    /\    / /  _____  \  |  |\   |     |  |     |  |____ |  '--'  |
-|__| \__|  \______/     |__|  |__| |_______||_______|| _|             \__/  \__/ /__/     \__\ |__| \__|     |__|     |_______||_______/
-""")
-print ("""
-     ___      __    __  .___________. __    __    ______   .______                         
-    /   \    |  |  |  | |           ||  |  |  |  /  __  \  |   _  \     _                  
-   /  ^  \   |  |  |  | `---|  |----`|  |__|  | |  |  |  | |  |_)  |   (_)                 
-  /  /_\  \  |  |  |  |     |  |     |   __   | |  |  |  | |      /                        
- /  _____  \ |  `--'  |     |  |     |  |  |  | |  `--'  | |  |\  \----._                  
-/__/     \__\ \______/      |__|     |__|  |__|  \______/  | _| `._____(_)                 
-                                                                                           
- __    __   __    __    _______  __    __       _______  __    __       ___      .__   __. 
-|  |  |  | |  |  |  |  /  _____||  |  |  |     /  _____||  |  |  |     /   \     |  \ |  | 
-|  |__|  | |  |  |  | |  |  __  |  |__|  |    |  |  __  |  |  |  |    /  ^  \    |   \|  | 
-|   __   | |  |  |  | |  | |_ | |   __   |    |  | |_ | |  |  |  |   /  /_\  \   |  . `  | 
-|  |  |  | |  `--'  | |  |__| | |  |  |  |    |  |__| | |  `--'  |  /  _____  \  |  |\   | 
-|__|  |__|  \______/   \______| |__|  |__|     \______|  \______/  /__/     \__\ |__| \__|
-""")
 #Type writer function
 import sys
 from time import sleep
@@ -65,7 +28,7 @@ def print1(msg):
 		sleep(0.02)
 		sys.stdout.flush()
 	sys.stdout.write("\n")   
-#This is the function that allows the gamer to actually move around in the map, it's also responsible for changing the coordinates of the map and therefore causing different conditions
+#This is the function that allows the gamer to actually move around in the map, it's also responsible for changing the coordinates of the map and therefore causing different results in the game
 def rungame1():
 	global x
 	global y
@@ -85,7 +48,6 @@ def rungame1():
 		elif  myinput == 'w':
 			y=y+1
 			room(visited)
-			#delete la
 		elif myinput == 'q':
 			break
 		else:
@@ -221,6 +183,7 @@ def introduction():
                                                                                                       . .  .       ,                                                                                    
                                                                                                    . */ //,/ /( (.*    
  	""")
+	#The greeting
 	name = input("Hi, I am Bluey, what's your name?\n")
 	print1("Hello " + name)
 	print1("Welcome to my game " + name)
@@ -269,6 +232,7 @@ def start():
                                                                                                                                                     
 	""")
 	Initiate = int(input("Which activity would you like to play? (type 1,2, or 3)\n"))
+	#running main game
 	if Initiate == 1:
 		print1 ("Welcome to the classroom where Posy is!\n")
 		print1 ("You approach a door, this is Room two and also the classroom that you will start this game in. Posy has just realized help is important, as Posy's best friend, of course you are invited to help out!\n")
@@ -280,8 +244,10 @@ def start():
 				rungame1()  
 		elif instructions == "no":
 			rungame1()  
+	#other option of running quiz
 	elif Initiate == 2:
 		runquiz()
+	#quitting the game
 	elif Initiate == 3:
 		quit()
 #Room conditions+score calculations+main text of game
@@ -367,13 +333,50 @@ def room(visited):
 			print1("You are at the edge of the classrooms! You can't go anywhere")
 			y=y+1
 		visited[x-1][y-1]=True
-#All the above were just functions and the below are the actual game (This helps me organize my game)
-#The starting assigned value and body of code
+#All the above were just functions(This helps me organize my game)
+#The starting assigned value of the room
 score=0
 x = 1
 y = 3
+#This is where the game actually starts: starts with ascii art
+print ("""
+____    __    ____  _______  __        ______   ______   .___  ___.  _______                                                             
+\   \  /  \  /   / |   ____||  |      /      | /  __  \  |   \/   | |   ____|                                                            
+ \   \/    \/   /  |  |__   |  |     |  ,----'|  |  |  | |  \  /  | |  |__                                                               
+  \            /   |   __|  |  |     |  |     |  |  |  | |  |\/|  | |   __|                                                              
+   \    /\    /    |  |____ |  `----.|  `----.|  `--'  | |  |  |  | |  |____                                                             
+    \__/  \__/     |_______||_______| \______| \______/  |__|  |__| |_______|                                                            
+                                                                                                                                         
+.___________.  ______                                                                                                                    
+|           | /  __  \                                                                                                                   
+`---|  |----`|  |  |  |                                                                                                                  
+    |  |     |  |  |  |                                                                                                                  
+    |  |     |  `--'  |                                                                                                                  
+    |__|      \______/                                                                                                                   
+                                                                                                                                         
+.__   __.   ______       __    __   _______  __      .______      ____    __    ____  ___      .__   __. .___________. _______  _______  
+|  \ |  |  /  __  \     |  |  |  | |   ____||  |     |   _  \     \   \  /  \  /   / /   \     |  \ |  | |           ||   ____||       \ 
+|   \|  | |  |  |  |    |  |__|  | |  |__   |  |     |  |_)  |     \   \/    \/   / /  ^  \    |   \|  | `---|  |----`|  |__   |  .--.  |
+|  . `  | |  |  |  |    |   __   | |   __|  |  |     |   ___/       \            / /  /_\  \   |  . `  |     |  |     |   __|  |  |  |  |
+|  |\   | |  `--'  |    |  |  |  | |  |____ |  `----.|  |            \    /\    / /  _____  \  |  |\   |     |  |     |  |____ |  '--'  |
+|__| \__|  \______/     |__|  |__| |_______||_______|| _|             \__/  \__/ /__/     \__\ |__| \__|     |__|     |_______||_______/
+""")
+print ("""
+     ___      __    __  .___________. __    __    ______   .______                         
+    /   \    |  |  |  | |           ||  |  |  |  /  __  \  |   _  \     _                  
+   /  ^  \   |  |  |  | `---|  |----`|  |__|  | |  |  |  | |  |_)  |   (_)                 
+  /  /_\  \  |  |  |  |     |  |     |   __   | |  |  |  | |      /                        
+ /  _____  \ |  `--'  |     |  |     |  |  |  | |  `--'  | |  |\  \----._                  
+/__/     \__\ \______/      |__|     |__|  |__|  \______/  | _| `._____(_)                 
+                                                                                           
+ __    __   __    __    _______  __    __       _______  __    __       ___      .__   __. 
+|  |  |  | |  |  |  |  /  _____||  |  |  |     /  _____||  |  |  |     /   \     |  \ |  | 
+|  |__|  | |  |  |  | |  |  __  |  |__|  |    |  |  __  |  |  |  |    /  ^  \    |   \|  | 
+|   __   | |  |  |  | |  | |_ | |   __   |    |  | |_ | |  |  |  |   /  /_\  \   |  . `  | 
+|  |  |  | |  `--'  | |  |__| | |  |  |  |    |  |__| | |  `--'  |  /  _____  \  |  |\   | 
+|__|  |__|  \______/   \______| |__|  |__|     \______|  \______/  /__/     \__\ |__| \__|
+""")
 #Functions being run
 introduction()
 start()	
-#The above start actually includes the full game
 endgame()
