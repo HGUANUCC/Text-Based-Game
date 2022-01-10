@@ -1,4 +1,6 @@
-#This will be the ascii starting part
+#No Help Wanted
+#Author: Hugh Guan
+#This will be the starting ascii art
 print ("""
                                                                  
                                                                                                               .  , *                                                                                     
@@ -54,174 +56,218 @@ from time import sleep
 def print(msg):
 	for i in msg:
 		sys.stdout.write(i)
-		sleep(0.02)
+		sleep(0.01)
 		sys.stdout.flush()
 	sys.stdout.write("\n")     
-#Main game body
+#This is the function that allows the gamer to actually move around in the map, it's also responsible for changing the coordinates of the map and therefore causing different conditions
 def rungame1():
 	global x
 	global y
 	global myinput
+	visited  =[ [False for i in range(4)]for j in range(4) ]
 	while score<200:
-		myinput = input('where do you want to go? (Press w for up, d for right, s for down, and a for left) \n')
+		myinput = input('where do you want to go? (Press w for up, d for right, s for down, and a for left) \ntype q any time you want to quit\n').lower()
 		if  myinput == 'd':
 			x=x+1
-			room()
-		if  myinput == 's':
+			room(visited)
+		elif  myinput == 's':
 			y=y-1
-			room()
-		if  myinput == 'a':
+			room(visited)
+		elif  myinput == 'a':
 			x=x-1
-			room()
-		if  myinput == 'w':
+			room(visited)
+		elif  myinput == 'w':
 			y=y+1
-			room()
+			room(visited)
+			#delete la
+		elif myinput == 'q':
+			break
+		else:
+			print("invalid command")
+#quiz question 1
 def question1():
 	global answer1
 	global points
-	answer1=int(input("What is...\n1.answer \n2. answer \n3. answer\n").strip())
+	answer1=int(input("What does stimulation mean?\n1.the action of pretending\n2.the action of raising excitement \n3. Being scared\n").strip())
 	if answer1 == 2:
 		points=points+1
 		print("correct!")
 	else:
 		print("wrong")
+#quiz question 2
 def question2():
 	global answer2
 	global points
-	answer2 = int(input("What is...\n1.answer \n2. answer \n3. answer\n").strip())
+	answer2 = int(input("What does keen mean?\n1. Being interested of something\n2. a type of food \n3. being annoying\n").strip())
 	if answer2 == 1:
 		points=points+1
 		print("correct!")
 	else:
 		print("wrong")
+#quiz question 3
 def question3():
 	global answer3
 	global points
-	answer3=int(input("What is...\n1.answer \n2. answer \n3. answer\n").strip())
+	answer3=int(input("Who was the vet?\n1.Jacob \n2. Sam \n3. Mr.Zen\n").strip())
 	if answer3 == 2:
 		points=points+1
 		print("correct!")
 	else:
 		print("wrong")
+#quiz question 4 
+def question4():
+	global answer4
+	global points
+	answer4=int(input("Why wasn't Bluey happy?\n1. He was hungry\n2. He wanted to play video games \n3. He was excluded from other friends\n").strip())
+	if answer4 == 3:
+		points=points+1
+		print("correct!")
+	else:
+		print("wrong")
+#quiz question 5
+def question5():
+	global answer5
+	global points
+	answer5=int(input("Why did Posy decide to get help at last?\n1.She realized she needs help to do well \n2. She didn't want to take care of the fish anymore \n3. She didn't want people to blame her so she wanted everyone to help her\n").strip())
+	if answer5 == 1:
+		points=points+1
+		print("correct!")
+	else:
+		print("wrong")
+#quiz main body 
 def runquiz():
 	global points
 	points=0
 	question1()
-	moveon = int(input("are you ready to move on? type 1 when ready\n"))
-	if moveon == 1:
-		question2()
-	moveon = int(input("are you ready to move on? type 1 when ready\n"))
-	if moveon == 1:
-		question3()
+	("")
+	question2()
+	("")
+	question3()
+	("")
+	question4()
+	("")
+	question5()
+	print ("Nice job, you got %s" % points)
+	print ("The total score was out of 5")
+	print ("here are the correct answers: 2,1,2,3, and 1")
 	start()
 
-#Condition for ending game
+#Condition for ending the main game
 def endgame():
 	if score>=200:
 		print("Congratulations, Bluey is happier than ever, don't forget, collaboration was always important on your path to success!\n You achieved %s" % score)
+	start()
 
-#The introduction
+#The introduction or the start before people choose the game
 def introduction():
 	global score
 	global name
 	name = input("Hi, I am Bluey, what's your name?\n")
 	print("Hello " + name)
 	print("Welcome to my game!" + name)
-#The tutorial and picking the games
-def start():
-	Initiate = int(input("What game would you like to play?\n1.Main Game\n2.A quiz about No Help Wanted\n"))
+#The part that gives the options to choose the game and the basic instructions
+def start(): 
+	("")
+	Initiate = int(input("Which activity would you like to play?\n1.Main Game\n2.A quiz about No Help Wanted\n3.Leave the game\n"))
 	if Initiate == 1:
 		print ("Welcome to the classroom where Posy is!\n")
-		print ("You approach a door, Posy has just realized help is important, as Posy's best friend, of course you are invited to help out!\n")
+		print ("You approach a door, this is Room two and also the classroom that you will start this game in. Posy has just realized help is important, as Posy's best friend, of course you are invited to help out!\n")
 		print ("You turn the knob, and the door swings open, sitting there is a little fish tank, with Bluey inside, hmm, there seems to be a lot of classrooms, this is surely a huge school,\n exploring them would be a good idea...")
-		instructions = input("Do you need the basic instructions? yes/no)")         
+		instructions = input("Do you need the basic instructions? yes/no)").lower()         
 		if instructions == "yes":
-			ready = input("There are 16 rooms for you to discover, use wasd to control the directions, in each room you would POSSIBLY discover something useful. Good luck!\n Type start to move on!")
-			if ready == "start":
+			ready = input("There are 16 rooms for you to discover, use wasd to control the directions, in each room you would POSSIBLY discover something useful. Good luck!\n Press enter to move on!").strip()
+			if ready == "":
 				rungame1()  
 		elif instructions == "no":
 			rungame1()  
 	elif Initiate == 2:
 		runquiz()
-#Room conditions/score calculations
-def room():
+	elif Initiate == 3:
+		quit()
+#Room conditions+score calculations+main text of game
+def room(visited):
 	global score
 	global x
 	global y
-	if (x ==1 and y == 4):
-		print("You walked into a room with shelves of book and stationaries, probably a storage room. \n You lock your sights on a bag of fish food, this would probably come in handy.")
-		score = score+50
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==2 and y == 4):
-		print("You walk into a room filled with the classmates of Posy, right in front there is a long line, \nevery student holding a tray, this must be the cafeteria. Suddenly, you hear someone to your left calling your name, you carry your fish bowl over, and they all meet together to play with Bluey, he seems to be in a cheerful mood now")
-		score = score+30
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==3 and y == 4):
-		print("Someone bumped into you, your fish bowl falling out of balance and almost spilling water. Bluey wakes up from his napping, \nand it looks like it's not the best time for Bluey")
-		score = score-20
-		print("Bluey doesn't look as cheerful, but don't worry, keep exploring to help him! HP: %s" % score)
-	elif (x ==4 and y == 4):
-		print("This is a room filled with books, wow! Ms. Smith welcomes you with a smile and hand you some puppets to play, \nsurely Bluey likes some puppet shows!")
-		score = score+50
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==1 and y == 3):
-		print("This rooms seems pretty familiar,\n wait, why are you back here at Posy's classroom, room two? We started here!")
-	elif (x ==2 and y == 3):
-		print("A pack of food flakes, this will be a great treat for Bluey!")
-		score = score+40
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==3 and y == 3):
-		print("Mr.Zen has been waiting in this room, he assembled everyone in the class as a surprise!\n A puppet show performance is put on and seems like Bluey is having a lot of fun! ")
-		score = score+100
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==4 and y == 3):
-		print("This looks like an abandned school room, nothing here, and even the walls are falling apart, so boring...")
-		score = score-10
-		print("Bluey is slightly bored, he lost a bit of his happiness HP: %s" % score)
-	elif (x ==1 and y == 2):
-		print("This is the science room, you always wanted to come here, Bluey seems to be a bit scared of the snake and the lizard,\n but he's doing fine. Sam, the vet offers to check Bluey. Sam is a huge help, thanks very much!")
-		score = score+30
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==2 and y == 2):
-		print("You walk into the art room, realizing that Bluey needs to be fed, you rush to feed him some flakes, he got a little hungry though.")
-		score = score-20
-		print("Bluey is a bit sad, but you can do this! HP: %s" % score)
-	elif (x ==3 and y == 2):
-		print("This is the music classroom, the kids are playing some beautiful music, Bluey is enjoying it!")
-		score = score+40
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==4 and y == 2):
-		print("Whoo, this is a surprise, Mr.Zen found out that you didn't do your homework, Bluey doesn't seem to be happy about this.")
-		score = score-40
-		print("Bluey is disappointed, better go do some homework... HP: %s" % score)
-	elif (x ==1 and y == 1):
-		print("Jacob offers to help change the water in the fish bowl, it does give Bluey a better living environment.")
-		score = score+20
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==2 and y == 1):
-		print("You walk into the design lab, Jacob happens to be working there, Jacob happens to have a book of fish care, this is gonna help out.")
-		score = score+60
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x ==3 and y == 1):
-		print("This room is crowded with people, Bluey is a bit scared and shy")
-		score = score-20
-		print("Don't worry, this isn't a big deal. Bluey'sHP: %s" % score)
-	elif (x ==4 and y == 1):
-		printf("Joining in on the assembly, Bluey seems to be enjoying the crowd.")
-		score = score+20
-		print("Congratulations! Bluey is happier, HP: %s" % score)
-	elif (x==5):
-		print ("You are at the edge of the classrooms! You can't go anywhere")
-		x=x-1
-	elif (x==0):
-		print ("You are at the edge of the classrooms! You can't go anywhere")
-		x=x+1
-	elif (y==5):
-		print ("You are at the edge of the classrooms! You can't go anywhere")
-		y=y-1
-	elif (y==0):
-		print ("You are at the edge of the classrooms! You can't go anywhere")
-		y=y+1
+	if (visited[x-1][y-1]):
+		print("You moved back to a room you have already visited.")
+	else:
+		if (x ==1 and y == 4):
+			print("You walked into a room with shelves of book and stationaries, probably a storage room. \n You lock your sights on a bag of fish food, this would probably come in handy.")
+			score = score+50
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==2 and y == 4):
+			print("You walk into a room filled with the classmates of Posy, right in front there is a long line, \nevery student holding a tray, this must be the cafeteria. Suddenly, you hear someone to your left calling your name, you carry your fish bowl over, and they all meet together to play with Bluey, he seems to be in a cheerful mood now")
+			score = score+30
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==3 and y == 4):
+			print("Someone bumped into you, your fish bowl falling out of balance and almost spilling water. Bluey wakes up from his napping, \nand it looks like it's not the best time for Bluey")
+			score = score-20
+			print("Bluey doesn't look as cheerful, but don't worry, keep exploring to help him! HP: %s" % score)
+		elif (x ==4 and y == 4):
+			print("This is a room filled with books, wow! Ms. Smith welcomes you with a smile and hand you some puppets to play, \nsurely Bluey likes some puppet shows!")
+			score = score+50
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==1 and y == 3):
+			print("This rooms seems pretty familiar,\n wait, why are you back here at Posy's classroom, room two? We started here!")
+		elif (x ==2 and y == 3):
+			print("A pack of food flakes, this will be a great treat for Bluey!")
+			score = score+40
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==3 and y == 3):
+			print("Mr.Zen has been waiting in this room, he assembled everyone in the class as a surprise!\n A puppet show performance is put on and seems like Bluey is having a lot of fun! ")
+			score = score+100
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==4 and y == 3):
+			print("This looks like an abandned school room, nothing here, and even the walls are falling apart, so boring...")
+			score = score-10
+			print("Bluey is slightly bored, he lost a bit of his happiness HP: %s" % score)
+		elif (x ==1 and y == 2):
+			print("This is the science room, you always wanted to come here, Bluey seems to be a bit scared of the snake and the lizard,\n but he's doing fine. Sam, the vet offers to check Bluey. Sam is a huge help, thanks very much!")
+			score = score+30
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==2 and y == 2):
+			print("You walk into the art room, realizing that Bluey needs to be fed, you rush to feed him some flakes, he got a little hungry though.")
+			score = score-20
+			print("Bluey is a bit sad, but you can do this! HP: %s" % score)
+		elif (x ==3 and y == 2):
+			print("This is the music classroom, the kids are playing some beautiful music, Bluey is enjoying it!")
+			score = score+40
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==4 and y == 2):
+			print("Whoo, this is a surprise, Mr.Zen found out that you didn't do your homework, Bluey doesn't seem to be happy about this.")
+			score = score-40
+			print("Bluey is disappointed, better go do some homework... HP: %s" % score)
+		elif (x ==1 and y == 1):
+			print("Jacob offers to help change the water in the fish bowl, it does give Bluey a better living environment.")
+			score = score+20
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==2 and y == 1):
+			print("You walk into the design lab, Jacob happens to be working there, Jacob happens to have a book of fish care, this is gonna help out.")
+			score = score+60
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x ==3 and y == 1):
+			print("This room is crowded with people, Bluey is a bit scared and shy")
+			score = score-20
+			print("Don't worry, this isn't a big deal. Bluey'sHP: %s" % score)
+		elif (x ==4 and y == 1):
+			printf("Joining in on the assembly, Bluey seems to be enjoying the crowd.")
+			score = score+20
+			print("Congratulations! Bluey is happier, HP: %s" % score)
+		elif (x==5):
+			print ("You are at the edge of the classrooms! You can't go anywhere")
+			x=x-1
+		elif (x==0):
+			print ("You are at the edge of the classrooms! You can't go anywhere")
+			x=x+1
+		elif (y==5):
+			print ("You are at the edge of the classrooms! You can't go anywhere")
+			y=y-1
+		elif (y==0):
+			print ("You are at the edge of the classrooms! You can't go anywhere")
+			y=y+1
+		visited[x-1][y-1]=True
+#All the above were just functions and the below are the actual game (This helps me organize my game)
 #The starting assigned value and body of code
 score=0
 x = 1
@@ -229,4 +275,5 @@ y = 3
 #Functions being run
 introduction()
 start()	
+#The above start actually includes the full game
 endgame()
