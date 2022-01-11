@@ -25,7 +25,7 @@ from time import sleep
 def print1(msg):
 	for i in msg:
 		sys.stdout.write(i)
-		sleep(0.001)
+		sleep(0.03)
 		sys.stdout.flush()
 	sys.stdout.write("\n")   
 #This is the function that allows the gamer to actually move around in the map, it's also responsible for changing the coordinates of the map and therefore causing different results in the game
