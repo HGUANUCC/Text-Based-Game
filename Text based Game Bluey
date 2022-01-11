@@ -238,7 +238,7 @@ def start():
 		print1 ("You turn the knob, and the door swings open, sitting there is a little fish tank, with Bluey inside, hmm, there seems to be a lot of classrooms, this is surely a huge school,\n exploring them would be a good idea...")
 		instructions = input("Do you need the basic instructions? yes/no)").lower()         
 		if instructions == "yes":
-			ready = input("There are 16 rooms for you to discover, use wasd to control the directions, in each room you would POSSIBLY discover something useful. Good luck!\n Press enter to move on!").strip()
+			ready = input("There are 16 rooms for you to discover, use wasd to control the directions, in each room you would POSSIBLY discover something useful. Get to 200 points to win. Good luck!\n Press enter to move on!").strip()
 			if ready == "":
 				rungame1()  
 		elif instructions == "no":
